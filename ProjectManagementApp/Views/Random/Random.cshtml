@@ -1,0 +1,26 @@
+﻿@model ProjectManagementApp.ViewModels.ProjectViewModel
+
+@{
+    ViewBag.Title = "Random";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="panel-heading">List of Projects</h2>
+
+@if (Model.Projects.Count == 0)
+{
+    <p>There are no projects.</p>
+}
+else
+{
+    <ul>
+        @foreach (var project in Model.Projects)
+        {
+            <li>@project.Name<br>@project.Description</li>
+        }
+    </ul>
+}
+
+
+
+

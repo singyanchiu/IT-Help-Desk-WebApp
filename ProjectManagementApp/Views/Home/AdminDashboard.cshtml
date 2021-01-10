@@ -1,0 +1,73 @@
+﻿@model ProjectManagementApp.ViewModels.RequestViewModel
+@{
+    ViewBag.Title = "Admin Dashboard";
+}
+
+@using Microsoft.AspNet.Identity
+@using ProjectManagementApp.Utils
+
+@if (Request.IsAuthenticated)
+{
+    <div>
+        <h3>Admin Dashboard</h3>
+        <hr>
+    </div>
+    if (Model.Requests.Count == 0)
+    {
+        <h4>There are no requests.</h4>
+    }
+    else
+    {
+        <h4>All Requests</h4>
+        <table class="table table-striped table-hover ">
+            <thead>
+                <tr>
+                    <th>Request no.</th>
+                    <th>Subject</th>
+                    <th>Submitter</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var request in Model.Requests)
+                {
+                    string username = TextTools.EmailToName(request.Submitter);
+                    <tr>
+                        <td style="cursor: pointer;">@request.Id</td>
+                        <td style="cursor: pointer;" onclick="location.href = '@(Url.Action("EditRequest", "Home", new { Id = request.Id }))'">@request.Subject</td>
+                        <td style="cursor: pointer;">@username</td>
+                        <td style="cursor: pointer;">@request.Status</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+}
+else
+{
+    <p>Login please</p>
+}
+
+
+
+@*<div class="row">
+        <div class="col-md-4">
+            <h2>Getting started</h2>
+            <p>
+                ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
+                enables a clean separation of concerns and gives you full control over markup
+                for enjoyable, agile development.
+            </p>
+            <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+            <h2>Get more libraries</h2>
+            <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
+            <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+            <h2>Web Hosting</h2>
+            <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
+            <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+        </div>
+    </div>*@
