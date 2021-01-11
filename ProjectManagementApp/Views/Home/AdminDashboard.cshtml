@@ -33,10 +33,10 @@
                 {
                     string username = TextTools.EmailToName(request.Submitter);
                     <tr>
-                        <td style="cursor: pointer;">@request.Id</td>
+                        <td style="cursor: pointer;" onclick="location.href = '@(Url.Action("EditRequest", "Home", new { Id = request.Id }))'">@request.Id</td>
                         <td style="cursor: pointer;" onclick="location.href = '@(Url.Action("EditRequest", "Home", new { Id = request.Id }))'">@request.Subject</td>
-                        <td style="cursor: pointer;">@username</td>
-                        <td style="cursor: pointer;">@request.Status</td>
+                        <td style="cursor: pointer;" onclick="location.href = '@(Url.Action("EditRequest", "Home", new { Id = request.Id }))'">@username</td>
+                        <td style="cursor: pointer;" onclick="location.href = '@(Url.Action("EditRequest", "Home", new { Id = request.Id }))'">@request.Status</td>
                     </tr>
                 }
             </tbody>
